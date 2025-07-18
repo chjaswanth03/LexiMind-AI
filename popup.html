@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LexiMind AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            min-width: 400px;
+            min-height: 500px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-4">
+    <div class="flex flex-col h-full">
+        <!-- Header -->
+        <header class="mb-4">
+            <h1 class="text-2xl font-bold text-indigo-600">LexiMind AI</h1>
+            <p class="text-sm text-gray-600">Enhance your reading experience</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+            <!-- Input Area -->
+            <div class="mb-4">
+                <textarea id="input-text" 
+                    class="w-full h-32 p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    placeholder="Paste or type your text here..."></textarea>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="grid grid-cols-3 gap-2 mb-4">
+                <button id="btn-summarize" class="btn-primary">
+                    Summarize
+                </button>
+                <button id="btn-highlight" class="btn-primary">
+                    Highlight
+                </button>
+                <button id="btn-flashcards" class="btn-primary">
+                    Flashcards
+                </button>
+            </div>
+
+            <!-- Results Area -->
+            <div id="results" class="mb-4 hidden">
+                <!-- Loading Spinner -->
+                <div id="loading" class="flex justify-center items-center py-4 hidden">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+                </div>
+
+                <!-- Results Content -->
+                <div id="results-content" class="bg-white p-4 rounded-lg border">
+                    <div id="output" class="text-gray-800"></div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="flex space-x-2 mt-4">
+                        <button id="btn-copy" class="btn-secondary">
+                            Copy to Clipboard
+                        </button>
+                        <button id="btn-export" class="btn-secondary">
+                            Export as .txt
+                        </button>
+                    </div>
+                    
+                    <!-- Future Integration -->
+                    <button disabled class="btn-disabled mt-2">
+                        Save to Notion (Coming Soon)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+            <details class="mt-4">
+                <summary class="text-indigo-600 font-medium cursor-pointer">Settings</summary>
+                <div class="mt-2 p-4 bg-white rounded-lg border">
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700">API Key</label>
+                        <input type="password" id="api-key" class="mt-1 block w-full px-3 py-2 border rounded-md">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700">Summary Tone</label>
+                        <select id="summary-tone" class="mt-1 block w-full px-3 py-2 border rounded-md">
+                            <option value="simple">Simple</option>
+                            <option value="professional">Professional</option>
+                            <option value="fun">Fun</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" id="auto-highlight">
+                            <span>Auto-Highlight</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" id="enable-flashcards">
+                            <span>Enable Flashcards</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" id="enable-voice">
+                            <span>Voice Reader</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" id="enable-sidebar">
+                            <span>Show Sidebar on Pages</span>
+                        </label>
+                    </div>
+                </div>
+            </details>
+        </main>
+    </div>
+
+    <style>
+        .btn-primary {
+            @apply bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 
+            focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2;
+        }
+        .btn-secondary {
+            @apply bg-gray-100 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-200 
+            focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
+        }
+        .btn-disabled {
+            @apply bg-gray-200 text-gray-500 py-2 px-4 rounded-md cursor-not-allowed w-full;
+        }
+    </style>
+    <script src="popup.js"></script>
+</body>
+</html>
